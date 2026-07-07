@@ -1,0 +1,7 @@
+{
+  "whatsapp": "34638258222",
+  "email": "ingartstudio@yahoo.com",
+  "telegram": "https://t.me/ingartstudios",
+  "prefill": "Hola Inga, me gustaría hablar de un proyecto para mi espacio.",
+  "_note": "whatsapp — цифры в межд. формате без '+' (напр. 34612345678). email — напр. hola@ingartstudio.com. Пока whatsapp/email пусты, кнопка 'Обсудить проект' ведёт на telegram (рабочий запасной канал). Заполнить и `make deploy`."
+}

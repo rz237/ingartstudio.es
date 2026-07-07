@@ -1,0 +1,6 @@
+node_modules/
+dist/
+reviews.debug.html
+test/shots/
+.pages-repo/
+_*.mjs

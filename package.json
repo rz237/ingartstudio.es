@@ -1,0 +1,7 @@
+{
+  "name": "ingart-web-tools",
+  "private": true,
+  "type": "module",
+  "description": "Headless-Chrome tools for the IngArt site: Google reviews import + responsive tests.",
+  "dependencies": { "puppeteer-core": "^23.11.1" }
+}

@@ -1,0 +1,57 @@
+{
+  "place": "https://maps.app.goo.gl/ZDtZseq2XENDeWoj6",
+  "fetchedCount": 5,
+  "reviews": [
+    {
+      "id": "places/ChIJw-HvDxcBoBIRix70hl5qhwI/reviews/ChdDSUhNMG9nS0VJQ0FnSUNSbmFMWXFnRRAB",
+      "author": "Анна Заславская",
+      "rating": 5,
+      "date": "Hace 3 años",
+      "text": "Lugar absolutamente único! Una isla magnífica de puro arte!\nTan cerca del mar 🌅",
+      "source": "google"
+    },
+    {
+      "id": "places/ChIJw-HvDxcBoBIRix70hl5qhwI/reviews/ChdDSUhNMG9nS0VJQ0FnSUNtdkt2V3dBRRAB",
+      "author": "Eros Rivero",
+      "rating": 5,
+      "date": "Hace 4 años",
+      "text": "Hermoso arte, buena energía",
+      "source": "google"
+    },
+    {
+      "id": "places/ChIJw-HvDxcBoBIRix70hl5qhwI/reviews/ChZDSUhNMG9nS0VJQ0FnSUNSei1MRWN3EAE",
+      "author": "Jose Pacheco Jiménez",
+      "rating": 1,
+      "date": "Hace 3 años",
+      "text": "PUERTAS CERRADAS.",
+      "source": "google"
+    },
+    {
+      "id": "places/ChIJw-HvDxcBoBIRix70hl5qhwI/reviews/ChZDSUhNMG9nS0VJQ0FnSURSekpHV1hnEAE",
+      "author": "Polina Polyakova",
+      "rating": 5,
+      "date": "Hace 3 años",
+      "text": "Es una casa muy hermosa, conmovedor, llena de arte, lo que hace la anfitriona. Muchas áreas de recreación.\nNo es la primera vez que me quedado en este casa-museo y aquí siempre duermo muy bien.  Un agradecimiento especial a Inga por su hospitalidad. Mis vemos pronto.",
+      "source": "google"
+    },
+    {
+      "id": "places/ChIJw-HvDxcBoBIRix70hl5qhwI/reviews/ChZDSUhNMG9nS0VJQ0FnSURWbThiYVFnEAE",
+      "author": "Sergey E",
+      "rating": 5,
+      "date": "Hace 2 años",
+      "text": "Talleres de ceramica unicos!",
+      "source": "google"
+    },
+    {
+      "id": "manual-2026-elena-kruchonok",
+      "author": "Elena Kruchonok",
+      "rating": 5,
+      "date": "",
+      "text": "From the moment I arrived, I was blown away by the exceptional hospitality. Impeccably clean and comfortable room, fresh flowers, homemade cookies and delicious breakfasts — and above all the kindness and warmth Inga radiated. I cannot recommend her lovely home highly enough for a cozy, welcoming stay.",
+      "source": "manual",
+      "topic": "stay",
+      "hidden": true,
+      "note": "Про проживание в Ingart Art House, не про арт-заказы — по умолчанию скрыт (см. positioning)."
+    }
+  ]
+}

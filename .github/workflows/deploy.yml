@@ -1,0 +1,53 @@
+name: Build & deploy to GitHub Pages
+
+# Собирает статический сайт из исходников (build.sh: шаблон + i18n.json + assets)
+# и публикует на GitHub Pages при каждом пуше в main. TLS/домен — на стороне Pages
+# (custom-домен берётся из dist/CNAME, который пишет build.sh).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Не отменять уже идущий деплой, чтобы страница не осталась полусобранной.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ImageMagick + WebP
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends imagemagick webp
+
+      - name: Build site
+        run: ./build.sh
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
