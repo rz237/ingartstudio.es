@@ -305,33 +305,88 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
   /* let long CTA labels wrap instead of overflowing on narrow phones */
   .btn{white-space:normal;max-width:100%;text-align:center}
 }
+
+/* ==========================================================================
+   Subpages (service / project / profile / hub). Shared shell (header, footer,
+   styles) is reused by build.sh; only these extra components are subpage-only.
+   ========================================================================== */
+.crumbs{font-size:13px;color:var(--ink-faint);padding-top:22px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.crumbs a{color:var(--ink-soft)}.crumbs a:hover{color:var(--ink)}
+.crumbs .sep{opacity:.55}
+.crumbs .cur{color:var(--ink-soft)}
+.subhero{padding-block:clamp(22px,3.5vw,40px) 0}
+.subhero .eyebrow{margin-bottom:14px}
+.subhero h1{font-size:clamp(30px,4vw,50px);max-width:20ch}
+.subhero .lead{font-size:clamp(17px,1.6vw,21px);color:var(--ink-soft);max-width:54ch;margin:18px 0 0}
+.subhero .meta-line{font-size:13.5px;letter-spacing:.02em;color:var(--ink-faint);margin:16px 0 0}
+.subhero .subcta{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+.sub-hero-img{margin-top:clamp(24px,4vw,44px);aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line);background:var(--ground-2)}
+.sub-hero-img img{width:100%;height:100%;object-fit:cover}
+.subsection{padding-block:clamp(40px,6vw,72px)}
+.subsection + .subsection{border-top:1px solid var(--line)}
+.subsection h2{font-size:clamp(23px,3vw,34px);margin-bottom:22px}
+.prose{max-width:64ch;display:flex;flex-direction:column;gap:16px}
+.prose p{margin:0;color:var(--ink-soft);font-size:16.5px}
+.checklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;max-width:820px}
+.checklist li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:15.5px}
+.checklist li::before{content:"—";position:absolute;left:0;color:var(--accent);font-weight:700}
+@media(max-width:640px){.checklist{grid-template-columns:1fr}}
+.faq-list{max-width:72ch}
+.faq-item{border-top:1px solid var(--line);padding:20px 0}
+.faq-item:last-child{border-bottom:1px solid var(--line)}
+.faq-item h3{font-size:18px;margin:0 0 8px}
+.faq-item p{margin:0;color:var(--ink-soft);font-size:15.5px}
+.details{border-collapse:collapse;width:100%;max-width:660px;font-size:15px}
+.details td{border-bottom:1px solid var(--line);padding:11px 0;vertical-align:top}
+.details td:first-child{color:var(--ink-faint);width:40%;padding-right:18px}
+.details td:last-child{color:var(--ink)}
+.subgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,18px)}
+.subgrid figure{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:var(--ground-2)}
+.subgrid img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.subgrid figure:hover img{transform:scale(1.04)}
+@media(max-width:760px){.subgrid{grid-template-columns:repeat(2,1fr)}}
+.hubcards{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,30px)}
+.hubcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  background:var(--ground-2);transition:border-color .25s,transform .25s}
+.hubcard:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+.hubcard .ph{aspect-ratio:16/10;overflow:hidden;background:var(--panel)}
+.hubcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.hubcard:hover .ph img{transform:scale(1.04)}
+.hubcard .hc-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:9px}
+.hubcard h3{font-size:21px}
+.hubcard p{margin:0;color:var(--ink-soft);font-size:15px}
+.hubcard .plink{margin-top:4px}
+@media(max-width:640px){.hubcards{grid-template-columns:1fr}}
+.related-links{display:flex;gap:10px 20px;flex-wrap:wrap;margin-top:4px}
+.related-links a{color:var(--accent);font-weight:600;font-size:15px;display:inline-flex;gap:.4em;align-items:center}
 </style>
 
 <header class="site-header">
   <div class="wrap hdr">
-    <div class="brand"><b>IngArt Studio</b> <span data-i="brand.by">by Inga Burina</span></div>
+    <a class="brand" href="%%HOME%%"><b>IngArt Studio</b> <span data-i="brand.by">by Inga Burina</span></a>
     <nav class="nav">
-      <a href="#work" data-i="nav.work">Obra</a>
-      <a href="#objects" data-i="nav.objects">Vajilla</a>
-      <a href="#process" data-i="nav.process">Proceso</a>
-      <a href="#about" data-i="nav.about">Autora</a>
-      <a href="#reviews" data-i="nav.reviews">Opiniones</a>
-      <a href="#contact" data-i="nav.contact">Contacto</a>
+      <a href="%%HOME%%#work" data-i="nav.work">Obra</a>
+      <a href="%%URL_SERVICIOS%%" data-i="nav.services">Servicios</a>
+      <a href="%%HOME%%#tableware" data-i="nav.objects">Vajilla</a>
+      <a href="%%HOME%%#process" data-i="nav.process">Proceso</a>
+      <a href="%%URL_PROFILE%%" data-i="nav.about">Autora</a>
+      <a href="%%HOME%%#contact" data-i="nav.contact">Contacto</a>
     </nav>
     <div class="hdr-tools">
       %%LANGSWITCH%%
-      <a href="#contact" class="btn btn-primary brandcta" data-i="nav.cta">Hablar del proyecto</a>
+      <a href="%%HOME%%#contact" class="btn btn-primary brandcta" data-i="nav.cta">Hablar del proyecto</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
     </div>
   </div>
   <nav class="mobile-nav" id="mobileNav" data-open="false" aria-label="Menú">
-    <a href="#work" data-i="nav.work">Obra</a>
-    <a href="#objects" data-i="nav.objects">Vajilla</a>
-    <a href="#process" data-i="nav.process">Proceso</a>
-    <a href="#about" data-i="nav.about">Autora</a>
-    <a href="#reviews" data-i="nav.reviews">Opiniones</a>
-    <a href="#contact" data-i="nav.contact">Contacto</a>
-    <a href="#contact" data-i="nav.cta">Hablar del proyecto</a>
+    <a href="%%HOME%%#work" data-i="nav.work">Obra</a>
+    <a href="%%URL_SERVICIOS%%" data-i="nav.services">Servicios</a>
+    <a href="%%URL_PROYECTOS%%" data-i="nav.projects">Proyectos</a>
+    <a href="%%HOME%%#tableware" data-i="nav.objects">Vajilla</a>
+    <a href="%%HOME%%#process" data-i="nav.process">Proceso</a>
+    <a href="%%URL_PROFILE%%" data-i="nav.about">Autora</a>
+    <a href="%%HOME%%#contact" data-i="nav.contact">Contacto</a>
+    <a href="%%HOME%%#contact" data-i="nav.cta">Hablar del proyecto</a>
   </nav>
 </header>
 
@@ -609,10 +664,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
     </div>
     <div class="fcol">
       <span class="lbl" data-i="footer.explore">Secciones</span>
-      <a href="#work" data-i="nav.work">Obra</a>
-      <a href="#objects" data-i="nav.objects">Vajilla</a>
-      <a href="#process" data-i="nav.process">Proceso</a>
-      <a href="#about" data-i="nav.about">Autora</a>
+      <a href="%%URL_SERVICIOS%%" data-i="nav.services">Servicios</a>
+      <a href="%%URL_PROYECTOS%%" data-i="nav.projects">Proyectos</a>
+      <a href="%%HOME%%#tableware" data-i="nav.objects">Vajilla</a>
+      <a href="%%HOME%%#process" data-i="nav.process">Proceso</a>
+      <a href="%%URL_PROFILE%%" data-i="nav.about">Autora</a>
     </div>
     <div class="fcol">
       <span class="lbl" data-i="footer.connect">Contacto</span>

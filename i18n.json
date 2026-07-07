@@ -114,7 +114,9 @@
   "footer.connect": "Contacto",
   "footer.classes": "Clases de cerámica →",
   "footer.rights": "© 2026 IngArt Studio · Inga Burina",
-  "footer.note": "Cerámica hecha a mano · Benicàssim"
+  "footer.note": "Cerámica hecha a mano · Benicàssim",
+  "nav.services": "Servicios",
+  "nav.projects": "Proyectos"
  },
  "en": {
   "meta.title": "Ceramic murals & bespoke tableware in Benicàssim | Inga Burina",
@@ -231,7 +233,9 @@
   "footer.connect": "Connect",
   "footer.classes": "Ceramic classes →",
   "footer.rights": "© 2026 IngArt Studio · Inga Burina",
-  "footer.note": "Handmade ceramics · Benicàssim"
+  "footer.note": "Handmade ceramics · Benicàssim",
+  "nav.services": "Services",
+  "nav.projects": "Projects"
  },
  "ru": {
   "meta.title": "Керамические панно и авторская посуда · Беникассим | Инга Бурина",
@@ -348,6 +352,8 @@
   "footer.connect": "Связь",
   "footer.classes": "Ceramic classes →",
   "footer.rights": "© 2026 IngArt Studio · Inga Burina",
-  "footer.note": "Керамика ручной работы · Benicàssim"
+  "footer.note": "Керамика ручной работы · Benicàssim",
+  "nav.services": "Услуги",
+  "nav.projects": "Проекты"
  }
 }
