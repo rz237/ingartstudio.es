@@ -31,14 +31,9 @@ jobs:
       - name: Build site
         run: ./build.sh
 
-      # Pages может быть включён в legacy-режиме (сборка из ветки) — тогда встроенный
-      # билдер конфликтует с этим workflow. Форсим build_type=workflow токеном CI
-      # (у github.token есть pages:write). Кастомный домен берётся из dist/CNAME.
-      - name: Force workflow build type
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api -X PUT "repos/${{ github.repository }}/pages" -f build_type=workflow || true
-
+      # Требует, чтобы владелец репо один раз выставил Settings → Pages → Source:
+      # "GitHub Actions" (переключение build_type/cname доступно только admin —
+      # ни PAT коллаборатора, ни github.token это сделать не могут, 403).
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
