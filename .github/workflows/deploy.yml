@@ -54,3 +54,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # IndexNow: мгновенно уведомляем Bing/Yandex/… об обновлённых URL после деплоя.
+      # Ключ читаем из web/static/<key>.txt (единый источник; файл раздаётся с корня).
+      - uses: actions/checkout@v4
+      - name: Ping IndexNow
+        run: |
+          HOST=ingartstudio.es
+          KEY=$(basename "$(ls static/*.txt | head -1)" .txt)
+          curl -sS -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":[\"https://$HOST/\",\"https://$HOST/en/\",\"https://$HOST/ru/\"]}" \
+            -w '\nIndexNow HTTP %{http_code}\n' || echo "IndexNow ping failed (non-fatal)"
