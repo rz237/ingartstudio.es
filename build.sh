@@ -82,6 +82,11 @@ done
 # Default Open Graph preview for the home page (the signature triptych)
 "$MAGICK" "assets/feature-triptych.jpg" -auto-orient -resize 1200x630^ -gravity center -extent 1200x630 -strip -quality 82 "$TMP/og.jpg"
 
+# Regenerate pages.json from its single source (pages.gen.py). pages.json is a
+# GENERATED artifact — content is authored in pages.gen.py. Fall back to the
+# committed pages.json if the generator is absent.
+if [ -f pages.gen.py ]; then python3 pages.gen.py; fi
+
 python3 - "$TEMPLATE" "dist" "$TMP" <<'PY'
 import html as H, json, pathlib, re, shutil, sys, urllib.parse, datetime
 
