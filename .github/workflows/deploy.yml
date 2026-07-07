@@ -26,7 +26,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install ImageMagick + WebP
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends imagemagick webp
+        run: |
+          # Drop third-party apt repos (packages.microsoft.com periodically ships an
+          # unsigned InRelease that makes `apt-get update` exit 100). Ubuntu's own
+          # repos carry imagemagick/webp, so tolerate an update failure and install.
+          sudo rm -f /etc/apt/sources.list.d/microsoft* /etc/apt/sources.list.d/azure* || true
+          sudo apt-get update || true
+          sudo apt-get install -y --no-install-recommends imagemagick webp
 
       - name: Build site
         run: ./build.sh
