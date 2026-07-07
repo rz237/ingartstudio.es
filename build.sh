@@ -70,9 +70,12 @@ for m in "${MAP[@]}"; do
   tok="${m%%|*}"; rest="${m#*|}"; src="${rest%%|*}"; w="${rest##*|}"
   [ -f "$src" ] || { echo "build: missing asset $src" >&2; exit 1; }
   "$MAGICK" "$src" -auto-orient -resize "${w}x${w}>" -strip -quality 80 -define webp:method=6 "$TMP/$tok.webp"
+  # per-token Open Graph preview (1200x630 JPEG — robust for link scrapers that dislike WebP);
+  # each page references its own hero so social/Telegram previews are page-specific.
+  "$MAGICK" "$src" -auto-orient -resize 1200x630^ -gravity center -extent 1200x630 -strip -quality 82 "$TMP/og-$tok.jpg"
 done
 
-# Open Graph preview (1200x630 JPEG — robust for link scrapers that dislike WebP)
+# Default Open Graph preview for the home page (the signature triptych)
 "$MAGICK" "assets/feature-triptych.jpg" -auto-orient -resize 1200x630^ -gravity center -extent 1200x630 -strip -quality 82 "$TMP/og.jpg"
 
 python3 - "$TEMPLATE" "dist" "$TMP" <<'PY'
@@ -181,6 +184,9 @@ def img_url(tok):
         sys.exit(f"build: pages.json references unknown image token {tok!r}")
     return f"/img/{tok}.webp"
 
+def og_image(tok):
+    return SITE + f"img/og-{tok}.jpg"
+
 # --- server-side i18n: fill data-i (text), data-i-ph (placeholder), data-i-al (aria-label) ---
 tmpl_keys = (set(re.findall(r'data-i="([^"]+)"', frag))
              | set(re.findall(r'data-i-ph="([^"]+)"', frag))
@@ -287,7 +293,7 @@ FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='
            "font-family='Georgia,serif' font-size='20' fill='%23f2ede1' "
            "text-anchor='middle'>I</text></svg>")
 
-def head_common(code, title, desc, canon, alt_pairs, preload_path, jsonld_str):
+def head_common(code, title, desc, canon, alt_pairs, preload_path, jsonld_str, og_url):
     alts = "".join(f'<link rel="alternate" hreflang="{c}" href="{u}">\n' for c, u in alt_pairs)
     alts += f'<link rel="alternate" hreflang="x-default" href="{alt_pairs[0][1]}">\n'
     return (
@@ -306,8 +312,11 @@ def head_common(code, title, desc, canon, alt_pairs, preload_path, jsonld_str):
         f'<meta property="og:title" content="{H.escape(title, quote=True)}">\n'
         f'<meta property="og:description" content="{H.escape(desc, quote=True)}">\n'
         f'<meta property="og:url" content="{canon}">\n'
-        f'<meta property="og:image" content="{SITE}img/og.jpg">\n'
+        f'<meta property="og:image" content="{og_url}">\n'
+        '<meta property="og:image:width" content="1200">\n'
+        '<meta property="og:image:height" content="630">\n'
         '<meta name="twitter:card" content="summary_large_image">\n'
+        f'<meta name="twitter:image" content="{og_url}">\n'
         f'<link rel="preload" as="image" href="{preload_path}" fetchpriority="high">\n'
         + jsonld_str + '\n'
     )
@@ -318,6 +327,11 @@ pages = json.loads(pathlib.Path("pages.json").read_text(encoding="utf-8"))["page
 byid = {p["id"]: p for p in pages}
 NAVURL = {pid: {c: sub_rel(byid[pid]["path"][c]) for c in CODES}
           for pid in ("servicios", "proyectos", "sobre-inga", "clases")}
+# per-page OG preview JPEGs (scraper-friendly) → dist/img/og-<hero>.jpg for each page hero
+for tok in sorted({p["img"] for p in pages if p.get("img")}):
+    ogsrc = pathlib.Path(tmp) / f"og-{tok}.jpg"
+    if ogsrc.exists():
+        shutil.copy2(ogsrc, imgdir / f"og-{tok}.jpg")
 def fill_navurls(s, code):
     return (s.replace("%%URL_SERVICIOS%%", NAVURL["servicios"][code])
              .replace("%%URL_PROYECTOS%%", NAVURL["proyectos"][code])
@@ -338,7 +352,8 @@ for code in CODES:
         sys.exit(f"build: unreplaced tokens (home {code}): {sorted(set(left))}")
     home_alts = [(c, home_url(c)) for c in CODES]
     doc = head_common(code, i18n[code]["meta.title"], i18n[code]["meta.description"],
-                      home_url(code), home_alts, "/img/SRC_HERO.webp", home_jsonld(code)) + page
+                      home_url(code), home_alts, "/img/SRC_HERO.webp", home_jsonld(code),
+                      SITE + "img/og.jpg") + page
     doc = doc.replace("</style>", "</style>\n</head>\n<body>", 1)
     doc = doc.rstrip() + "\n</body>\n</html>\n"
     dest = out_root / "index.html" if code == "es" else out_root / code / "index.html"
@@ -578,8 +593,9 @@ for page in pages:
             graph.append(person_node(code))
         alt_pairs = [(c, sub_abs(page["path"][c])) for c in CODES]
         preload = img_url(page["img"]) if page.get("img") else "/img/SRC_HERO.webp"
+        og_url = og_image(page["img"]) if page.get("img") else SITE + "img/og.jpg"
         head = head_common(code, page["title"][code], page["desc"][code], canon,
-                           alt_pairs, preload, jsonld_tag(graph))
+                           alt_pairs, preload, jsonld_tag(graph), og_url)
         doc = head + STYLE + "\n</head>\n<body>\n" + body
         doc = doc.rstrip() + "\n</body>\n</html>\n"
         dest = out_root / path / "index.html"
