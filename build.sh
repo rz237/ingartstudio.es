@@ -64,6 +64,10 @@ MAP=(
   "SRC_BP_BULLS|assets/bocapez-bulls.jpg|900"
   "SRC_BP_FISH|assets/bocapez-fish.jpg|900"
   "SRC_BP_PLATTER|assets/bocapez-platter.jpg|900"
+  "SRC_CLASS_GROUP|assets/class-group.jpg|1300"
+  "SRC_CLASS_HANDSON|assets/class-handson.jpg|1000"
+  "SRC_CLASS_TEXTURE|assets/class-texture.jpg|1000"
+  "SRC_CLASS_WORKS|assets/class-works.jpg|1000"
 )
 
 for m in "${MAP[@]}"; do

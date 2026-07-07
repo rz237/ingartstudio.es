@@ -1682,7 +1682,7 @@
   {
    "id": "clases",
    "kind": "service",
-   "img": "SRC_PROCESS",
+   "img": "SRC_CLASS_GROUP",
    "serviceType": "Ceramic and decorative art classes",
    "eyebrow": {
     "es": "Taller · Benicàssim",
@@ -1720,9 +1720,9 @@
     "ru": "Уроки керамики, мозаики, пирографии и живописи с художницей Ингой Буриной в её студии в Benicàssim. Для детей и взрослых, с нуля. Летние классы 2026 от 25 €."
    },
    "img_alt": {
-    "es": "Inga Burina pintando cerámica en su estudio de Benicàssim, donde imparte clases",
-    "en": "Inga Burina painting ceramics in her Benicàssim studio, where she teaches classes",
-    "ru": "Инга Бурина расписывает керамику в своей студии в Benicàssim, где ведёт занятия"
+    "es": "Clase de cerámica al aire libre con niños y adultos en el estudio de Inga Burina, Benicàssim",
+    "en": "Outdoor ceramic class with children and adults at Inga Burina's studio, Benicàssim",
+    "ru": "Занятие по керамике на открытом воздухе с детьми и взрослыми в студии Инги Буриной, Benicàssim"
    },
    "snippet": {
     "es": "En mi estudio de Benicàssim, Ingart Art House, imparto clases de cerámica y arte decorativo para niños y adultos, desde cero o con experiencia. Cada persona trabaja su propia pieza — de la idea a la forma cocida — con las mismas técnicas que uso en los encargos.",
@@ -1781,27 +1781,27 @@
    },
    "gallery": [
     {
-     "img": "SRC_PROCESS2",
+     "img": "SRC_CLASS_HANDSON",
      "alt": {
-      "es": "Inga Burina pintando con pincel en el taller",
-      "en": "Inga Burina painting with a brush in the workshop",
-      "ru": "Инга Бурина расписывает кистью в мастерской"
+      "es": "Un adulto y una niña modelando arcilla juntos en una clase de cerámica al aire libre",
+      "en": "An adult and a child modelling clay together in an outdoor ceramics class",
+      "ru": "Взрослый и девочка вместе лепят из глины на занятии по керамике на открытом воздухе"
      }
     },
     {
-     "img": "SRC_WARE_PIGS",
+     "img": "SRC_CLASS_TEXTURE",
      "alt": {
-      "es": "Tazas cerámicas «cerditos» hechas a mano, típicas del taller",
-      "en": "Handmade 'little pig' ceramic cups, typical of the workshop",
-      "ru": "Керамические чашки-«поросята» ручной работы, типичные для мастерской"
+      "es": "Manos imprimiendo la textura de una hoja natural sobre una placa de arcilla",
+      "en": "Hands pressing the texture of a natural leaf onto a clay slab",
+      "ru": "Руки оттискивают фактуру натурального листа на глиняной пластине"
      }
     },
     {
-     "img": "SRC_WARE_MOON",
+     "img": "SRC_CLASS_WORKS",
      "alt": {
-      "es": "Plato cerámico decorativo pintado a mano",
-      "en": "Hand-painted decorative ceramic plate",
-      "ru": "Расписанная вручную декоративная керамическая тарелка"
+      "es": "Piezas cerámicas terminadas y esmaltadas hechas por alumnos: taza-zorro, plato con mariposa y pez azul",
+      "en": "Finished glazed ceramic pieces made by students: a fox cup, a butterfly plate and a blue fish",
+      "ru": "Готовые глазурованные керамические работы учеников: чашка-лиса, тарелка с бабочкой и синяя рыба"
      }
     }
    ],
