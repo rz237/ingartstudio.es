@@ -420,10 +420,12 @@ def related_html(page, code):
             f'    <div class="related-links">{links}</div>\n')
 
 def cta_section(page, code):
-    return (f'  <section class="subsection"><div class="wrap contact" style="text-align:center;max-width:720px">\n'
-            f'    <h2 class="reveal">{esc(CTA_TITLE[code])}</h2>\n'
-            f'    <p class="muted reveal">{esc(CTA_SUB[code])}</p>\n'
-            f'    <a class="btn btn-primary has-arrow reveal" href="{cta_href(page, code)}" target="_blank" rel="noopener">'
+    # reuse the home ".contact .wrap" centering (flex column, align-items:center);
+    # both classes must be on separate nested elements for the selector to match.
+    return (f'  <section class="subsection contact"><div class="wrap reveal">\n'
+            f'    <h2>{esc(CTA_TITLE[code])}</h2>\n'
+            f'    <p class="muted">{esc(CTA_SUB[code])}</p>\n'
+            f'    <a class="btn btn-primary has-arrow" href="{cta_href(page, code)}" target="_blank" rel="noopener">'
             f'{esc(page.get("cta",{}).get(code) or CTA_LABEL[code])}</a>\n'
             f'{related_html(page, code)}'
             f'  </div></section>\n')
