@@ -55,14 +55,32 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      # IndexNow: мгновенно уведомляем Bing/Yandex/… об обновлённых URL после деплоя.
-      # Ключ читаем из web/static/<key>.txt (единый источник; файл раздаётся с корня).
+      # IndexNow: мгновенно уведомляем Bing/Yandex/… обо ВСЕХ URL после деплоя.
+      # Список строится из pages.gen.py (главная + все подстраницы, по-язычно) — само-
+      # поддерживается, новые страницы попадают автоматически. Ключ — web/static/<key>.txt.
       - uses: actions/checkout@v4
       - name: Ping IndexNow
         run: |
           HOST=ingartstudio.es
           KEY=$(basename "$(ls static/*.txt | head -1)" .txt)
+          python3 pages.gen.py >/dev/null 2>&1 || true
+          URLS=$(python3 - <<'PY'
+import json
+site = "https://ingartstudio.es/"
+urls = [site, site + "en/", site + "ru/"]
+try:
+    pages = json.load(open("pages.json")).get("pages", [])
+    for p in pages:
+        for c in ("es", "en", "ru"):
+            urls.append(site + p["path"][c] + "/")
+except Exception:
+    pass
+print(json.dumps(urls))
+PY
+)
+          N=$(python3 -c "import json,sys;print(len(json.loads(sys.argv[1])))" "$URLS")
+          echo "IndexNow: submitting $N URLs"
           curl -sS -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json" \
-            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":[\"https://$HOST/\",\"https://$HOST/en/\",\"https://$HOST/ru/\"]}" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":$URLS}" \
             -w '\nIndexNow HTTP %{http_code}\n' || echo "IndexNow ping failed (non-fatal)"
