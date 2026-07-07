@@ -78,7 +78,8 @@
    "children": [
     "panel-montanas",
     "mural-habanero",
-    "vajilla-boca-pez"
+    "vajilla-boca-pez",
+    "ave-fuego"
    ]
   },
   {
@@ -1257,27 +1258,35 @@
    },
    "gallery": [
     {
-     "img": "SRC_WARE_FISH",
+     "img": "SRC_BP_BULL",
      "alt": {
-      "es": "Fuentes cerámicas en forma de pez para servir marisco",
-      "en": "Fish-shaped ceramic platters for serving seafood",
-      "ru": "Керамические блюда в форме рыбы для подачи морепродуктов"
+      "es": "Taza-fuente cerámica en forma de cabeza de toro con ceviche, para el restaurante Boca Pez",
+      "en": "Bull's-head ceramic serving cup with ceviche, for Boca Pez restaurant",
+      "ru": "Керамическая чашка-блюдо в форме головы быка с севиче для ресторана Boca Pez"
      }
     },
     {
-     "img": "SRC_WARE_TURQ",
+     "img": "SRC_BP_BULLS",
      "alt": {
-      "es": "Fuentes cerámicas turquesa en forma de pez con una estrella de mar",
-      "en": "Turquoise fish-shaped ceramic platters with a starfish",
-      "ru": "Бирюзовые керамические блюда в форме рыбы с морской звездой"
+      "es": "Varias tazas cerámicas de cabeza de toro servidas en la mesa del restaurante Boca Pez",
+      "en": "Several bull's-head ceramic cups served on the table at Boca Pez restaurant",
+      "ru": "Несколько керамических чашек-«быков» на столе ресторана Boca Pez"
      }
     },
     {
-     "img": "SRC_WARE_MOON",
+     "img": "SRC_BP_FISH",
      "alt": {
-      "es": "Plato cerámico decorativo con luna y olas de la serie marina",
-      "en": "Decorative ceramic plate with a moon and waves from the marine series",
-      "ru": "Декоративная керамическая тарелка с луной и волнами из морской серии"
+      "es": "Fuente cerámica de pescado con ceviche y mango junto a una taza esculpida, Boca Pez",
+      "en": "Ceramic fish platter with ceviche and mango beside a sculpted mug, Boca Pez",
+      "ru": "Керамическое блюдо-рыба с севиче и манго рядом со скульптурной чашкой, Boca Pez"
+     }
+    },
+    {
+     "img": "SRC_BP_PLATTER",
+     "alt": {
+      "es": "Fuente cerámica alargada en forma de pescado para la puesta en escena del marisco, Boca Pez",
+      "en": "Long fish-shaped ceramic platter for staging seafood, Boca Pez",
+      "ru": "Вытянутое керамическое блюдо в форме рыбы для подачи морепродуктов, Boca Pez"
      }
     }
    ],
@@ -1384,6 +1393,206 @@
    ]
   },
   {
+   "id": "ave-fuego",
+   "kind": "project",
+   "parent": "proyectos",
+   "img": "SRC_FB_GARDEN",
+   "path": {
+    "es": "proyectos/ave-de-fuego-barbacoa-ceramica",
+    "en": "en/projects/firebird-ceramic-barbecue",
+    "ru": "ru/proekty/zhar-ptitsa-keramicheskaya-barbekyu"
+   },
+   "crumb": {
+    "es": "«Ave de Fuego» · barbacoa",
+    "en": "“Firebird” · barbecue",
+    "ru": "«Жар-птица» · барбекю"
+   },
+   "card": {
+    "es": "Mural cerámico con un ave de fuego sobre una barbacoa de jardín — cerámica para el exterior.",
+    "en": "Ceramic mural with a firebird over a garden barbecue — ceramics for the outdoors.",
+    "ru": "Керамический мурал с жар-птицей на садовом барбекю — керамика для улицы."
+   },
+   "h1": {
+    "es": "«Ave de Fuego»: cerámica sobre una barbacoa de jardín",
+    "en": "“Firebird”: ceramics on a garden barbecue",
+    "ru": "«Жар-птица»: керамика на садовом барбекю"
+   },
+   "title": {
+    "es": "«Ave de Fuego» · mural cerámico sobre barbacoa de jardín | Inga Burina",
+    "en": "“Firebird” · ceramic mural on a garden barbecue | Inga Burina",
+    "ru": "«Жар-птица» · керамический мурал на садовом барбекю | Инга Бурина"
+   },
+   "desc": {
+    "es": "Caso: mural cerámico con un ave de fuego dorada sobre una estructura de barbacoa de jardín en Benicàssim — azulejo pintado a mano, bordes ornamentales y mosaico. Ejemplo de cerámica para chimeneas, barbacoas y fachadas.",
+    "en": "Case study: a ceramic mural with a golden firebird over a garden barbecue structure in Benicàssim — hand-painted tile, ornamental borders and mosaic. An example of ceramics for fireplaces, barbecues and façades.",
+    "ru": "Кейс: керамический мурал с золотой жар-птицей на садовой структуре барбекю в Benicàssim — расписная плитка, орнаментальные бордюры и мозаика. Пример керамики для каминов, барбекю и фасадов."
+   },
+   "meta_line": {
+    "es": "Mural cerámico · barbacoa de jardín · exterior · Benicàssim",
+    "en": "Ceramic mural · garden barbecue · exterior · Benicàssim",
+    "ru": "Керамический мурал · садовое барбекю · экстерьер · Benicàssim"
+   },
+   "img_alt": {
+    "es": "Barbacoa de jardín revestida de cerámica con un ave de fuego dorada pintada a mano en el frontón",
+    "en": "Garden barbecue clad in ceramic with a hand-painted golden firebird on the gable",
+    "ru": "Садовое барбекю, облицованное керамикой, с расписанной вручную золотой жар-птицей на фронтоне"
+   },
+   "snippet": {
+    "es": "Una estructura de barbacoa de jardín convertida en pieza de autor: un ave de fuego dorada — el pájaro de fuego del folclore ruso — preside el frontón en azulejo cerámico pintado a mano, entre bordes florales y mosaico. Es un ejemplo de mi trabajo de cerámica para chimeneas, barbacoas y fachadas, pensado para durar a la intemperie.",
+    "en": "A garden barbecue structure turned into an authored piece: a golden firebird — the fire bird of Russian folklore — presides over the gable in hand-painted ceramic tile, among floral borders and mosaic. It is an example of my work in ceramics for fireplaces, barbecues and façades, made to last outdoors.",
+    "ru": "Садовая структура барбекю, превращённая в авторскую вещь: золотая жар-птица — огненная птица русского фольклора — венчает фронтон в расписной керамической плитке, среди цветочных бордюров и мозаики. Это пример моей работы по керамике для каминов, барбекю и фасадов, рассчитанной на улицу."
+   },
+   "story_title": {
+    "es": "La idea",
+    "en": "The idea",
+    "ru": "Идея"
+   },
+   "story": {
+    "es": [
+     "Un rincón funcional del jardín — la barbacoa — puede ser también el centro artístico del espacio. Sobre esta estructura de exterior llevé un ave de fuego dorada, una figura que trae el folclore ruso al jardín mediterráneo.",
+     "El frontón se revistió con azulejo cerámico pintado a mano y esmaltado a fuego; los laterales, con bordes florales y ornamentales, y el conjunto dialoga con elementos de mosaico (trencadís) en las superficies cercanas. La cerámica no solo decora: protege la estructura y resiste el sol, la lluvia y el calor del fuego.",
+     "Es la muestra de un servicio concreto — cerámica para chimeneas, cocinas, hornos de barbacoa y fachadas — donde el arte se integra en la arquitectura del hogar y del jardín."
+    ],
+    "en": [
+     "A functional corner of the garden — the barbecue — can also be the artistic centre of the space. Onto this outdoor structure I brought a golden firebird, a figure that carries Russian folklore into a Mediterranean garden.",
+     "The gable was clad in hand-painted, kiln-fired ceramic tile; the sides, with floral and ornamental borders, and the whole talks to mosaic (trencadís) elements on the nearby surfaces. Ceramic does not only decorate: it protects the structure and withstands sun, rain and the heat of the fire.",
+     "It is a sample of a concrete service — ceramics for fireplaces, kitchens, barbecue ovens and façades — where art becomes part of the architecture of the home and the garden."
+    ],
+    "ru": [
+     "Функциональный уголок сада — барбекю — может быть и художественным центром пространства. На эту наружную структуру я перенесла золотую жар-птицу — образ, приносящий русский фольклор в средиземноморский сад.",
+     "Фронтон облицован расписной керамической плиткой, обожжённой в печи; боковины — цветочными и орнаментальными бордюрами, а всё вместе перекликается с элементами мозаики (тренкадис) на соседних поверхностях. Керамика не только украшает: она защищает структуру и выдерживает солнце, дождь и жар огня.",
+     "Это образец конкретной услуги — керамика для каминов, кухонь, печей-барбекю и фасадов, — где искусство становится частью архитектуры дома и сада."
+    ]
+   },
+   "gallery": [
+    {
+     "img": "SRC_FB_BIRD",
+     "alt": {
+      "es": "Detalle del frontón: ave de fuego dorada pintada a mano sobre azulejo cerámico",
+      "en": "Gable detail: hand-painted golden firebird on ceramic tile",
+      "ru": "Фрагмент фронтона: расписанная вручную золотая жар-птица на керамической плитке"
+     }
+    },
+    {
+     "img": "SRC_FB_HEARTH",
+     "alt": {
+      "es": "Vista frontal de la barbacoa con el ave de fuego y el hogar de fuego",
+      "en": "Front view of the barbecue with the firebird and the fire hearth",
+      "ru": "Вид спереди на барбекю с жар-птицей и очагом"
+     }
+    },
+    {
+     "img": "SRC_FB_MOSAIC",
+     "alt": {
+      "es": "La barbacoa cerámica junto a una mesa de mosaico (trencadís) en el jardín",
+      "en": "The ceramic barbecue beside a mosaic (trencadís) table in the garden",
+      "ru": "Керамическое барбекю рядом с мозаичным столом (тренкадис) в саду"
+     }
+    }
+   ],
+   "details_title": {
+    "es": "Ficha del proyecto",
+    "en": "Project details",
+    "ru": "О проекте"
+   },
+   "details": {
+    "es": [
+     [
+      "Tipo",
+      "Mural cerámico sobre estructura de barbacoa"
+     ],
+     [
+      "Ubicación",
+      "Jardín, Benicàssim, Castellón"
+     ],
+     [
+      "Material",
+      "Azulejo cerámico pintado a mano, esmaltes, mosaico"
+     ],
+     [
+      "Técnica",
+      "Pintura a mano, esmaltado a fuego, trencadís"
+     ],
+     [
+      "Uso",
+      "Exterior (barbacoa de jardín)"
+     ],
+     [
+      "Tema",
+      "Ave de fuego (folclore ruso) + bordes florales"
+     ]
+    ],
+    "en": [
+     [
+      "Type",
+      "Ceramic mural on a barbecue structure"
+     ],
+     [
+      "Location",
+      "Garden, Benicàssim, Castellón"
+     ],
+     [
+      "Material",
+      "Hand-painted ceramic tile, glazes, mosaic"
+     ],
+     [
+      "Technique",
+      "Hand painting, kiln firing, trencadís"
+     ],
+     [
+      "Use",
+      "Exterior (garden barbecue)"
+     ],
+     [
+      "Theme",
+      "Firebird (Russian folklore) + floral borders"
+     ]
+    ],
+    "ru": [
+     [
+      "Тип",
+      "Керамический мурал на структуре барбекю"
+     ],
+     [
+      "Место",
+      "Сад, Benicàssim, Castellón"
+     ],
+     [
+      "Материал",
+      "Расписная керамическая плитка, глазури, мозаика"
+     ],
+     [
+      "Техника",
+      "Ручная роспись, обжиг, тренкадис"
+     ],
+     [
+      "Использование",
+      "Экстерьер (садовое барбекю)"
+     ],
+     [
+      "Тема",
+      "Жар-птица (русский фольклор) + цветочные бордюры"
+     ]
+    ]
+   },
+   "artwork": {
+    "name": "Ave de Fuego",
+    "artform": "Ceramic mural",
+    "artMedium": "Hand-painted ceramic tile",
+    "material": "Ceramic tile",
+    "location": "Benicàssim, Castellón, España"
+   },
+   "cta": {
+    "es": "Cerámica para mi jardín",
+    "en": "Ceramics for my garden",
+    "ru": "Керамика для моего сада"
+   },
+   "related": [
+    "decoracion-espacios",
+    "murales-ceramicos"
+   ]
+  },
+  {
    "id": "sobre-inga",
    "kind": "profile",
    "img": "SRC_PORTRAIT",
@@ -1468,6 +1677,185 @@
    "related": [
     "murales-ceramicos",
     "vajilla-restaurantes"
+   ]
+  },
+  {
+   "id": "clases",
+   "kind": "service",
+   "img": "SRC_PROCESS",
+   "serviceType": "Ceramic and decorative art classes",
+   "eyebrow": {
+    "es": "Taller · Benicàssim",
+    "en": "Workshop · Benicàssim",
+    "ru": "Мастерская · Benicàssim"
+   },
+   "path": {
+    "es": "clases-de-ceramica",
+    "en": "en/ceramic-classes",
+    "ru": "ru/uroki-keramiki"
+   },
+   "crumb": {
+    "es": "Clases de cerámica",
+    "en": "Ceramic classes",
+    "ru": "Уроки керамики"
+   },
+   "card": {
+    "es": "Clases de cerámica y arte decorativo en el estudio de Benicàssim.",
+    "en": "Ceramic and decorative art classes at the Benicàssim studio.",
+    "ru": "Уроки керамики и декоративного искусства в студии Benicàssim."
+   },
+   "h1": {
+    "es": "Clases de cerámica y arte decorativo en Benicàssim",
+    "en": "Ceramic and decorative art classes in Benicàssim",
+    "ru": "Уроки керамики и декоративного искусства в Benicàssim"
+   },
+   "title": {
+    "es": "Clases de cerámica y arte decorativo en Benicàssim | IngArt Studio",
+    "en": "Ceramic and decorative art classes in Benicàssim | IngArt Studio",
+    "ru": "Уроки керамики и декоративного искусства в Benicàssim | IngArt Studio"
+   },
+   "desc": {
+    "es": "Clases de cerámica, mosaico, pirografía y pintura con la artista Inga Burina en su estudio de Benicàssim. Para niños y adultos, desde cero. Clases de verano 2026 desde 25 €.",
+    "en": "Ceramic, mosaic, pyrography and painting classes with artist Inga Burina at her Benicàssim studio. For children and adults, from scratch. Summer 2026 classes from 25 €.",
+    "ru": "Уроки керамики, мозаики, пирографии и живописи с художницей Ингой Буриной в её студии в Benicàssim. Для детей и взрослых, с нуля. Летние классы 2026 от 25 €."
+   },
+   "img_alt": {
+    "es": "Inga Burina pintando cerámica en su estudio de Benicàssim, donde imparte clases",
+    "en": "Inga Burina painting ceramics in her Benicàssim studio, where she teaches classes",
+    "ru": "Инга Бурина расписывает керамику в своей студии в Benicàssim, где ведёт занятия"
+   },
+   "snippet": {
+    "es": "En mi estudio de Benicàssim, Ingart Art House, imparto clases de cerámica y arte decorativo para niños y adultos, desde cero o con experiencia. Cada persona trabaja su propia pieza — de la idea a la forma cocida — con las mismas técnicas que uso en los encargos.",
+    "en": "At my Benicàssim studio, Ingart Art House, I teach ceramic and decorative art classes for children and adults, from scratch or with experience. Each person works on their own piece — from the idea to the fired form — with the same techniques I use in commissions.",
+    "ru": "В моей студии в Benicàssim, Ingart Art House, я веду уроки керамики и декоративного искусства для детей и взрослых — с нуля или с опытом. Каждый работает над своей вещью — от идеи до обожжённой формы — теми же техниками, что я использую в заказах."
+   },
+   "intro": {
+    "es": [
+     "El estudio no es solo un taller de producción: también es un lugar para aprender. En grupos pequeños enseño a modelar, pintar y esmaltar cerámica, y a trabajar otras técnicas decorativas, a tu ritmo y según lo que quieras crear.",
+     "No hace falta experiencia previa. Empezamos por lo básico — el barro, la forma, el color — y avanzamos hasta que te llevas a casa tu propia pieza, cocida y terminada. También hay clases pensadas para niños."
+    ],
+    "en": [
+     "The studio is not only a production workshop: it is also a place to learn. In small groups I teach how to model, paint and glaze ceramics, and how to work other decorative techniques, at your own pace and according to what you want to create.",
+     "No previous experience is needed. We start from the basics — the clay, the form, the colour — and move on until you take home your own piece, fired and finished. There are also classes designed for children."
+    ],
+    "ru": [
+     "Студия — не только производственная мастерская, но и место, где можно учиться. В маленьких группах я учу лепить, расписывать и глазуровать керамику, а также работать в других декоративных техниках — в вашем ритме и под то, что вы хотите создать.",
+     "Опыт не нужен. Начинаем с основ — глина, форма, цвет — и доходим до того, что вы забираете домой свою вещь, обожжённую и завершённую. Есть и занятия для детей."
+    ]
+   },
+   "includes_title": {
+    "es": "Qué se puede aprender",
+    "en": "What you can learn",
+    "ru": "Чему можно научиться"
+   },
+   "includes": {
+    "es": [
+     "Curso de cerámica artística (modelado, torno a mano, pintura y esmalte)",
+     "Mosaico y trencadís al estilo mediterráneo",
+     "Pirografía y pintura sobre madera",
+     "Pintura mural y creación de cuadros",
+     "Pintura sobre seda y ropa",
+     "Para niños y adultos · desde cero o con experiencia"
+    ],
+    "en": [
+     "Artistic ceramics course (modelling, hand-building, painting and glazing)",
+     "Mosaic and trencadís in the Mediterranean style",
+     "Pyrography and painting on wood",
+     "Wall painting and picture-making",
+     "Painting on silk and clothing",
+     "For children and adults · from scratch or with experience"
+    ],
+    "ru": [
+     "Курс художественной керамики (лепка, ручная формовка, роспись и глазурь)",
+     "Мозаика и тренкадис в средиземноморском стиле",
+     "Пирография и роспись по дереву",
+     "Настенная роспись и создание картин",
+     "Роспись по шёлку и одежде",
+     "Для детей и взрослых · с нуля или с опытом"
+    ]
+   },
+   "price": {
+    "es": "Clases de verano 2026 · desde 25 € · en grupos pequeños. Fechas y plazas por WhatsApp.",
+    "en": "Summer 2026 classes · from 25 € · in small groups. Dates and places via WhatsApp.",
+    "ru": "Летние классы 2026 · от 25 € · в маленьких группах. Даты и места — в WhatsApp."
+   },
+   "gallery": [
+    {
+     "img": "SRC_PROCESS2",
+     "alt": {
+      "es": "Inga Burina pintando con pincel en el taller",
+      "en": "Inga Burina painting with a brush in the workshop",
+      "ru": "Инга Бурина расписывает кистью в мастерской"
+     }
+    },
+    {
+     "img": "SRC_WARE_PIGS",
+     "alt": {
+      "es": "Tazas cerámicas «cerditos» hechas a mano, típicas del taller",
+      "en": "Handmade 'little pig' ceramic cups, typical of the workshop",
+      "ru": "Керамические чашки-«поросята» ручной работы, типичные для мастерской"
+     }
+    },
+    {
+     "img": "SRC_WARE_MOON",
+     "alt": {
+      "es": "Plato cerámico decorativo pintado a mano",
+      "en": "Hand-painted decorative ceramic plate",
+      "ru": "Расписанная вручную декоративная керамическая тарелка"
+     }
+    }
+   ],
+   "faq": {
+    "es": [
+     [
+      "¿Necesito experiencia previa?",
+      "No. Las clases están pensadas para empezar desde cero; también para quien ya tiene práctica y quiere perfeccionar una técnica."
+     ],
+     [
+      "¿Hay clases para niños?",
+      "Sí. Trabajo con niños y con adultos; el enfoque y el ritmo se adaptan a cada grupo."
+     ],
+     [
+      "¿Cómo me apunto?",
+      "Escríbeme por WhatsApp y te digo las fechas, los horarios y las plazas disponibles de la temporada. Los grupos son pequeños."
+     ]
+    ],
+    "en": [
+     [
+      "Do I need previous experience?",
+      "No. The classes are designed to start from scratch; also for those who already have practice and want to refine a technique."
+     ],
+     [
+      "Are there classes for children?",
+      "Yes. I work with both children and adults; the approach and the pace adapt to each group."
+     ],
+     [
+      "How do I sign up?",
+      "Message me on WhatsApp and I'll tell you the dates, times and places available for the season. Groups are small."
+     ]
+    ],
+    "ru": [
+     [
+      "Нужен ли опыт?",
+      "Нет. Занятия рассчитаны на старт с нуля; подойдут и тем, у кого уже есть практика и кто хочет отточить технику."
+     ],
+     [
+      "Есть ли занятия для детей?",
+      "Да. Работаю и с детьми, и со взрослыми; подход и темп подстраиваются под каждую группу."
+     ],
+     [
+      "Как записаться?",
+      "Напишите мне в WhatsApp — расскажу даты, время и свободные места на сезон. Группы небольшие."
+     ]
+    ]
+   },
+   "cta": {
+    "es": "Apuntarme a una clase",
+    "en": "Book a class",
+    "ru": "Записаться на занятие"
+   },
+   "related": [
+    "sobre-inga"
    ]
   }
  ]

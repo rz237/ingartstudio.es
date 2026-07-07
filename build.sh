@@ -56,6 +56,14 @@ MAP=(
   "SRC_GORY_ARTIST|assets/gory-artist.jpg|1000"
   "SRC_GORY_SUCC|assets/gory-succulents.jpg|1000"
   "SRC_GORY_BIRD|assets/gory-hoopoe.jpg|1000"
+  "SRC_FB_GARDEN|assets/firebird-garden.jpg|1300"
+  "SRC_FB_BIRD|assets/firebird-bird.jpg|1000"
+  "SRC_FB_HEARTH|assets/firebird-hearth.jpg|1000"
+  "SRC_FB_MOSAIC|assets/firebird-mosaic.jpg|1000"
+  "SRC_BP_BULL|assets/bocapez-bull.jpg|900"
+  "SRC_BP_BULLS|assets/bocapez-bulls.jpg|900"
+  "SRC_BP_FISH|assets/bocapez-fish.jpg|900"
+  "SRC_BP_PLATTER|assets/bocapez-platter.jpg|900"
 )
 
 for m in "${MAP[@]}"; do
@@ -309,11 +317,12 @@ def head_common(code, title, desc, canon, alt_pairs, preload_path, jsonld_str):
 pages = json.loads(pathlib.Path("pages.json").read_text(encoding="utf-8"))["pages"]
 byid = {p["id"]: p for p in pages}
 NAVURL = {pid: {c: sub_rel(byid[pid]["path"][c]) for c in CODES}
-          for pid in ("servicios", "proyectos", "sobre-inga")}
+          for pid in ("servicios", "proyectos", "sobre-inga", "clases")}
 def fill_navurls(s, code):
     return (s.replace("%%URL_SERVICIOS%%", NAVURL["servicios"][code])
              .replace("%%URL_PROYECTOS%%", NAVURL["proyectos"][code])
-             .replace("%%URL_PROFILE%%",   NAVURL["sobre-inga"][code]))
+             .replace("%%URL_PROFILE%%",   NAVURL["sobre-inga"][code])
+             .replace("%%URL_CLASSES%%",   NAVURL["clases"][code]))
 
 # ==========================================================================
 #  HOME — three languages, from the full template (chrome + main)
