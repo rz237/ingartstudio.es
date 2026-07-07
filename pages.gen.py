@@ -18,6 +18,8 @@ Field reference (per page dict):
             es has no prefix, en starts "en/…", ru starts "ru/…"
   crumb/h1/title/desc/snippet   localized {es,en,ru} strings (title = <title>,
             desc = meta description, snippet = promptable answer-first lead)
+            ⚠ KEEP EACH `desc` ≤ 160 CHARACTERS (Bing/Google truncate longer; Bing
+            Webmaster flags them). Home meta.description lives in i18n.json, same limit.
   serviceType   (service) English service type for JSON-LD
   intro/includes/faq/price      (service) localized bodies; faq = list of [q,a]
   meta_line/story/details/gallery/artwork   (project) localized bodies + facts
