@@ -205,6 +205,7 @@ def jsonld(code):
     desc = i18n[code]["meta.description"]
     same = [s for s in [
         "https://instagram.com/ingartstudio",
+        "https://www.facebook.com/ingartstudio/",
         "https://saatchiart.com/ingart",
         "https://t.me/ingartstudios",
         cfg.get("cidUrl"),
@@ -342,6 +343,14 @@ urls = "".join(
 host = urllib.parse.urlparse(SITE).hostname or ""
 (out_root / "CNAME").write_text(host + "\n", encoding="utf-8")
 (out_root / ".nojekyll").write_text("", encoding="utf-8")
+
+# Passthrough static files → served at site root as-is (search-engine verification
+# such as BingSiteAuth.xml / google*.html, etc.). Drop a file into web/static/.
+staticdir = pathlib.Path("static")
+if staticdir.is_dir():
+    for f in sorted(staticdir.iterdir()):
+        if f.is_file():
+            shutil.copy2(f, out_root / f.name)
 
 n = len(usable) if usable else 0
 for code, dest, size in written:
