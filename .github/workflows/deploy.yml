@@ -64,22 +64,8 @@ jobs:
           HOST=ingartstudio.es
           KEY=$(basename "$(ls static/*.txt | head -1)" .txt)
           python3 pages.gen.py >/dev/null 2>&1 || true
-          URLS=$(python3 - <<'PY'
-import json
-site = "https://ingartstudio.es/"
-urls = [site, site + "en/", site + "ru/"]
-try:
-    pages = json.load(open("pages.json")).get("pages", [])
-    for p in pages:
-        for c in ("es", "en", "ru"):
-            urls.append(site + p["path"][c] + "/")
-except Exception:
-    pass
-print(json.dumps(urls))
-PY
-)
-          N=$(python3 -c "import json,sys;print(len(json.loads(sys.argv[1])))" "$URLS")
-          echo "IndexNow: submitting $N URLs"
+          URLS=$(python3 -c "import json;s='https://$HOST/';p=json.load(open('pages.json'))['pages'];print(json.dumps([s,s+'en/',s+'ru/']+[s+x['path'][c]+'/' for x in p for c in ('es','en','ru')]))")
+          echo "IndexNow: submitting $(python3 -c "import json,sys;print(len(json.loads(sys.argv[1])))" "$URLS") URLs"
           curl -sS -X POST "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json; charset=utf-8" \
             -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":$URLS}" \
