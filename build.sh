@@ -335,7 +335,8 @@ def head_common(code, title, desc, canon, alt_pairs, preload_path, jsonld_str, o
 pages = json.loads(pathlib.Path("pages.json").read_text(encoding="utf-8"))["pages"]
 byid = {p["id"]: p for p in pages}
 NAVURL = {pid: {c: sub_rel(byid[pid]["path"][c]) for c in CODES}
-          for pid in ("servicios", "proyectos", "sobre-inga", "clases")}
+          for pid in ("servicios", "proyectos", "sobre-inga", "clases",
+                      "vajilla-restaurantes", "vajilla-boca-pez")}
 # per-page OG preview JPEGs (scraper-friendly) → dist/img/og-<hero>.jpg for each page hero
 for tok in sorted({p["img"] for p in pages if p.get("img")}):
     ogsrc = pathlib.Path(tmp) / f"og-{tok}.jpg"
@@ -345,7 +346,9 @@ def fill_navurls(s, code):
     return (s.replace("%%URL_SERVICIOS%%", NAVURL["servicios"][code])
              .replace("%%URL_PROYECTOS%%", NAVURL["proyectos"][code])
              .replace("%%URL_PROFILE%%",   NAVURL["sobre-inga"][code])
-             .replace("%%URL_CLASSES%%",   NAVURL["clases"][code]))
+             .replace("%%URL_CLASSES%%",   NAVURL["clases"][code])
+             .replace("%%URL_VAJILLA%%",   NAVURL["vajilla-restaurantes"][code])
+             .replace("%%URL_BOCAPEZ%%",   NAVURL["vajilla-boca-pez"][code]))
 
 # ==========================================================================
 #  HOME — three languages, from the full template (chrome + main)

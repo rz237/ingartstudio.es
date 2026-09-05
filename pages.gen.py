@@ -579,7 +579,7 @@ pages.append({
               "artMedium": "Hand-painted ceramic tile", "material": "Ceramic tile",
               "dateCreated": "2020", "location": "Benicàssim, Castellón, España"},
   "cta": tri("Un mural para mi local", "A mural for my venue", "Мурал для моего заведения"),
-  "related": ["murales-ceramicos", "vajilla-boca-pez"],
+  "related": ["murales-ceramicos", "vajilla-restaurantes", "vajilla-boca-pez"],
 })
 
 # ---------------------------------------------- PROJECT: vajilla Boca Pez

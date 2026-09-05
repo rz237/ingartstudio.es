@@ -71,8 +71,10 @@ it stays local. The repo contains only the public site sources.
 
 **Tokens** used in the template/shell (all resolved at build; a leftover `%%…%%` fails the build):
 `%%SRC_*%%` (image → `/img/*.webp`), `%%LANGSWITCH%%`, `%%HOME%%` (language home path, e.g. `/en/`),
-`%%URL_SERVICIOS%%` / `%%URL_PROYECTOS%%` / `%%URL_PROFILE%%` / `%%URL_CLASSES%%` (localized hub /
-profile / classes URLs — these let the shared header link to the right localized slug per language),
+`%%URL_SERVICIOS%%` / `%%URL_PROYECTOS%%` / `%%URL_PROFILE%%` / `%%URL_CLASSES%%` / `%%URL_VAJILLA%%` /
+`%%URL_BOCAPEZ%%` (localized hub / profile / classes / tableware-service / Boca-Pez-case URLs — these let
+the shared header, footer and home sections link to the right localized slug per language; add an id to
+`NAVURL` in `build.sh` to expose another page as a token),
 `%%CONTACT_PRIMARY%%`, `%%CONTACT_LINKS%%`, `%%WA_BASE%%`, `%%REVIEWS%%`, `%%GOOGLE_URL%%`.
 
 ---

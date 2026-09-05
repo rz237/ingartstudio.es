@@ -178,7 +178,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
 .ware-grid figure{margin:0;aspect-ratio:1/1;overflow:hidden;border-radius:12px;background:var(--ground-2);border:1px solid var(--line)}
 .ware-grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
 .ware-grid figure:hover img{transform:scale(1.04)}
-.ware-cta{text-align:center;margin-top:clamp(20px,2.4vw,30px)}
+.ware-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(20px,2.4vw,30px)}
+.ware-grid figure a{display:block;height:100%}
 .ware-quote{max-width:820px;margin:clamp(28px,4vw,52px) auto 0;text-align:center}
 .ware-quote p{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.1vw,25px);line-height:1.5;color:var(--ink);margin:0}
 .ware-quote cite{display:block;margin-top:16px;font-style:normal;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
@@ -367,7 +368,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
     <nav class="nav">
       <a href="%%HOME%%#work" data-i="nav.work">Obra</a>
       <a href="%%URL_SERVICIOS%%" data-i="nav.services">Servicios</a>
-      <a href="%%HOME%%#tableware" data-i="nav.objects">Vajilla</a>
+      <a href="%%URL_VAJILLA%%" data-i="nav.objects">Vajilla</a>
       <a href="%%HOME%%#process" data-i="nav.process">Proceso</a>
       <a href="%%URL_PROFILE%%" data-i="nav.about">Autora</a>
     </nav>
@@ -381,7 +382,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
     <a href="%%HOME%%#work" data-i="nav.work">Obra</a>
     <a href="%%URL_SERVICIOS%%" data-i="nav.services">Servicios</a>
     <a href="%%URL_PROYECTOS%%" data-i="nav.projects">Proyectos</a>
-    <a href="%%HOME%%#tableware" data-i="nav.objects">Vajilla</a>
+    <a href="%%URL_VAJILLA%%" data-i="nav.objects">Vajilla</a>
     <a href="%%HOME%%#process" data-i="nav.process">Proceso</a>
     <a href="%%URL_PROFILE%%" data-i="nav.about">Autora</a>
     <a href="%%HOME%%#contact" data-i="nav.cta">Hablar del proyecto</a>
@@ -447,7 +448,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
           <span class="num">02</span>
           <h3 data-i="prod.ware.t">Vajilla</h3>
           <p data-i="prod.ware.d">Cerámica de autor hecha a mano y colecciones a medida — para el hogar, un restaurante o como regalo.</p>
-          <a href="#contact" class="plink has-arrow" data-i="prod.ware.l">Solicitar precio</a>
+          <a href="%%URL_VAJILLA%%" class="plink has-arrow" data-i="prod.ware.l">Vajilla para restaurantes</a>
         </article>
         <article class="pcard reveal">
           <div class="ph"><img src="%%SRC_DECOR%%" alt="Objeto decorativo de mosaico en un jardín"></div>
@@ -470,17 +471,17 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
       </div>
       <div class="ware-grid reveal">
         <figure><img src="%%SRC_WARE_PIGS%%" alt="Tazas cerámicas «cerditos» hechas a mano"></figure>
-        <figure><img src="%%SRC_WARE_FISH%%" alt="Fuentes cerámicas en forma de pez para marisco"></figure>
+        <figure><a href="%%URL_VAJILLA%%"><img src="%%SRC_WARE_FISH%%" alt="Fuentes cerámicas en forma de pez para marisco"></a></figure>
         <figure><img src="%%SRC_WARE_ROOSTER%%" alt="Escultura cerámica de gallo con esmalte rojo"></figure>
-        <figure><img src="%%SRC_WARE_BULL%%" alt="Taza cerámica en forma de cabeza de toro, servida en un restaurante"></figure>
+        <figure><a href="%%URL_BOCAPEZ%%"><img src="%%SRC_WARE_BULL%%" alt="Taza cerámica en forma de cabeza de toro, servida en un restaurante"></a></figure>
         <figure><img src="%%SRC_WARE_MOON%%" alt="Plato decorativo con luna y olas"></figure>
-        <figure><img src="%%SRC_WARE_TURQ%%" alt="Fuentes cerámicas turquesa en forma de pez con una estrella de mar"></figure>
+        <figure><a href="%%URL_VAJILLA%%"><img src="%%SRC_WARE_TURQ%%" alt="Fuentes cerámicas turquesa en forma de pez con una estrella de mar"></a></figure>
       </div>
       <blockquote class="ware-quote reveal">
         <p data-i="ware.quote">Creo cerámica que se convierte en una prolongación de la cocina de autor. Cada plato es un lienzo donde se encuentran mi visión artística y la intención gastronómica del chef. Juntos creamos no solo vajilla, sino un escenario donde el plato revela su carácter y el emplatado pasa a formar parte de la historia del restaurante.</p>
         <cite data-i="ware.quote.by">Inga Burina</cite>
       </blockquote>
-      <div class="ware-cta reveal"><a href="#contact" class="btn btn-ghost has-arrow" data-i="ware.cta">Solicitar precio</a></div>
+      <div class="ware-cta reveal"><a href="%%URL_VAJILLA%%" class="btn btn-primary has-arrow" data-i="ware.link">Vajilla personalizada para restaurantes</a><a href="#contact" class="btn btn-ghost has-arrow" data-i="ware.cta">Solicitar precio</a></div>
     </div>
   </section>
 
@@ -664,7 +665,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:bal
       <span class="lbl" data-i="footer.explore">Secciones</span>
       <a href="%%URL_SERVICIOS%%" data-i="nav.services">Servicios</a>
       <a href="%%URL_PROYECTOS%%" data-i="nav.projects">Proyectos</a>
-      <a href="%%HOME%%#tableware" data-i="nav.objects">Vajilla</a>
+      <a href="%%URL_VAJILLA%%" data-i="nav.objects">Vajilla</a>
       <a href="%%HOME%%#process" data-i="nav.process">Proceso</a>
       <a href="%%URL_PROFILE%%" data-i="nav.about">Autora</a>
     </div>
