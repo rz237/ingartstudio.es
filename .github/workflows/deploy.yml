@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history: build.sh derives sitemap <lastmod> from git commit dates
 
       - name: Install ImageMagick + WebP
         run: |

@@ -62,8 +62,8 @@ it stays local. The repo contains only the public site sources.
    exactly one source of chrome; edit the header once and all pages change.
 5. **Renders every subpage** from `pages.json` (one renderer per `kind`), wrapping the shell
    around a per-kind `<main>`, and writing its own `<head>`.
-6. Writes `robots.txt`, `sitemap.xml` (home + all subpages, with hreflang), `CNAME`, `.nojekyll`,
-   and copies `static/*` to the site root.
+6. Writes `robots.txt`, `sitemap.xml` (home + all subpages, with hreflang; `<lastmod>` = git date of
+   the page's own content, see §6), `CNAME`, `.nojekyll`, and copies `static/*` to the site root.
 
 **Server-side i18n**: translatable nodes in the template carry `data-i` (text), `data-i-ph`
 (placeholder) or `data-i-al` (aria-label); build.sh substitutes the string for each language from
@@ -137,6 +137,11 @@ Contact-sheet trick to choose from many source photos:
   of its own hero (`og-<TOKEN>.jpg`); the home uses the signature triptych `og.jpg`. This is what
   fixes link previews showing the wrong image.
 - `robots.txt` (open to all bots incl. AI) + `sitemap.xml` (home + subpages, with hreflang).
+  **`<lastmod>` is real**: the date of the last commit that touched that page's content — its block
+  in `pages.gen.py` (`git log -L`) plus the images it shows; the home uses the template, `i18n.json`,
+  reviews and contact config. It is *not* the build date (a lastmod that moves for every URL on every
+  deploy gets ignored by crawlers). Uncommitted local edits → today; CI clones with `fetch-depth: 0`
+  so it sees the history. Chrome-only changes (header/footer) do not bump subpages.
 - **IndexNow**: CI pings `api.indexnow.org` after deploy (key file in `static/`), so Bing/Yandex
   learn about updates immediately. Google/Bing verification files live in `static/`.
 

@@ -77,6 +77,7 @@ for m in "${MAP[@]}"; do
   # per-token Open Graph preview (1200x630 JPEG — robust for link scrapers that dislike WebP);
   # each page references its own hero so social/Telegram previews are page-specific.
   "$MAGICK" "$src" -auto-orient -resize 1200x630^ -gravity center -extent 1200x630 -strip -quality 82 "$TMP/og-$tok.jpg"
+  printf '%s\t%s\n' "$tok" "$src" >> "$TMP/assets.tsv"   # token → source, for sitemap <lastmod>
 done
 
 # Default Open Graph preview for the home page (the signature triptych)
@@ -88,7 +89,7 @@ done
 if [ -f pages.gen.py ]; then python3 pages.gen.py; fi
 
 python3 - "$TEMPLATE" "dist" "$TMP" <<'PY'
-import html as H, json, pathlib, re, shutil, sys, urllib.parse, datetime
+import html as H, json, pathlib, re, shutil, subprocess, sys, urllib.parse, datetime
 
 template, distdir, tmp = sys.argv[1], sys.argv[2], sys.argv[3]
 SITE = "https://ingartstudio.es/"
@@ -619,17 +620,59 @@ for page in pages:
 (out_root / "robots.txt").write_text(
     "User-agent: *\nAllow: /\n\nSitemap: " + SITE + "sitemap.xml\n", encoding="utf-8")
 
-lastmod = datetime.date.today().isoformat()
-def sm_entry(abs_by_code):
+# <lastmod> = date of the last commit that touched the page's OWN content — its block in
+# pages.gen.py plus the images it shows (home: template, i18n, reviews, contact config +
+# its images) — never the build date. A lastmod that jumps on every deploy for every URL
+# teaches crawlers to ignore it. Uncommitted local edits → today (the live site is built
+# by CI after the commit, so it always sees real dates). No git / shallow clone → today.
+TODAY = datetime.date.today().isoformat()
+ASSET_OF = dict(l.split("\t", 1) for l in (pathlib.Path(tmp) / "assets.tsv").read_text().splitlines() if "\t" in l)
+
+def _git(*args):
+    try:
+        r = subprocess.run(["git", *args], capture_output=True, text=True, timeout=30)
+        return r.stdout if r.returncode == 0 else None
+    except Exception:
+        return None
+
+def git_lastmod(date_paths=(), block=None, dirty_paths=()):
+    """YYYY-MM-DD of the newest commit among date_paths / the -L block; today if dirty; None if unknown."""
+    watched = [*dirty_paths, *date_paths]
+    if watched and (_git("status", "--porcelain", "--", *watched) or "").strip():
+        return TODAY
+    dates = []
+    if date_paths:
+        d = (_git("log", "-1", "--format=%cs", "--", *date_paths) or "").strip()
+        if d: dates.append(d)
+    if block:
+        d = (_git("log", "-1", "-s", "--format=%cs", "-L", block) or "").strip().splitlines()
+        if d: dates.append(d[0])
+    return max(dates) if dates else None
+
+def assets_of(tokens):
+    return sorted({ASSET_OF[t] for t in tokens if t in ASSET_OF})
+
+def page_lastmod(page):
+    toks = [page.get("img")] + [g.get("img") for g in page.get("gallery", [])]
+    block = f'/"id": "{page["id"]}"/,/^}})/:pages.gen.py'
+    return git_lastmod(assets_of(toks), block=block, dirty_paths=["pages.gen.py"]) or TODAY
+
+def home_lastmod():
+    srcs = ["index.template.html", "i18n.json", "reviews.json", "reviews.config.json", "contact.config.json"]
+    srcs += assets_of(re.findall(r"%%(SRC_[A-Z0-9_]+)%%", frag))
+    return git_lastmod([p for p in srcs if pathlib.Path(p).exists()]) or TODAY
+
+def sm_entry(abs_by_code, lastmod):
     alt = "".join(f'    <xhtml:link rel="alternate" hreflang="{c}" href="{abs_by_code[c]}"/>\n' for c in CODES)
     alt += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{abs_by_code["es"]}"/>\n'
     return "".join(
         f'  <url>\n    <loc>{abs_by_code[c]}</loc>\n    <lastmod>{lastmod}</lastmod>\n{alt}  </url>\n'
         for c in CODES)
 
-sitemap_urls = sm_entry({c: home_url(c) for c in CODES})
+lastmods = {"home": home_lastmod(), **{p["id"]: page_lastmod(p) for p in pages}}
+sitemap_urls = sm_entry({c: home_url(c) for c in CODES}, lastmods["home"])
 for page in pages:
-    sitemap_urls += sm_entry({c: sub_abs(page["path"][c]) for c in CODES})
+    sitemap_urls += sm_entry({c: sub_abs(page["path"][c]) for c in CODES}, lastmods[page["id"]])
 (out_root / "sitemap.xml").write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n'
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
@@ -656,4 +699,6 @@ for code, dest, size in homes:
 print(f"build: {len(subs)} subpages ({len(pages)} × {len(CODES)} langs) written to dist/")
 print(f"build: reviews {'%d real' % n if n else 'placeholders'} · robots.txt + "
       f"sitemap.xml ({1+len(pages)} url-clusters) · {len(tmpl_keys)} i18n keys")
+print("build: sitemap lastmod · " + " · ".join(f"{d} ×{n}" for d, n in sorted(
+      __import__("collections").Counter(lastmods.values()).items(), reverse=True)))
 PY
