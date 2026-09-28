@@ -18,6 +18,7 @@
 #   * every page gets its own <head> (title/description/canonical + hreflang
 #     cluster + OG + preload + JSON-LD by entity + BreadcrumbList) and <html lang>;
 #   * writes robots.txt (open, links sitemap) and sitemap.xml (all URLs + hreflang).
+#   * writes /.well-known/agent.json (agent-json.com discovery doc, no inbox — handoff to WhatsApp/email).
 #
 # Images external + loading="lazy" (fast first paint); each page hero is eager+preload.
 # Reproducible: edit template / i18n.json / pages.json / assets and run `make build`.
@@ -619,6 +620,51 @@ for page in pages:
 # --- robots.txt (open, incl. AI bots) + sitemap.xml (home + all subpages) ---
 (out_root / "robots.txt").write_text(
     "User-agent: *\nAllow: /\n\nSitemap: " + SITE + "sitemap.xml\n", encoding="utf-8")
+
+# --- /.well-known/agent.json (agent-json.com discovery doc) -----------------
+# Static site → no /.agent/inbox, so no message_endpoint/authentication/response_modes.
+# The one action hands off to a human channel instead: `handoff` is our own extension
+# (not in the spec) — a prefilled WhatsApp URL template + email. Contacts and page
+# links come from the same configs as the site, so they can't drift.
+svc = [p for p in pages if p["kind"] == "service" and p["id"] != "clases"]
+agent = clean({
+    "version": "1.0",
+    "name": "IngArt Studio by Inga Burina",
+    "description": ("Bespoke ceramic murals, wall panels, handmade tableware and ceramic "
+                    "decoration by artist Inga Burina, Benicàssim (Castellón, Spain). "
+                    "From sketch to installation. Languages: es, en, ru."),
+    "url": SITE,
+    "actions": [{
+        "name": "request_project_quote",
+        "description": ("Start a conversation with the artist about a commission (ceramic mural, "
+                        "panel, tableware collection or space decoration). Artwork from 200 €/m², "
+                        "materials extra; sketches 150–300 €. No online booking or payment: "
+                        "open the handoff URL so the human sends the message."),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "project_type": {"type": "string",
+                                 "enum": ["mural", "panel", "tableware", "space_decoration", "other"]},
+                "location": {"type": "string", "description": "City/area of the project"},
+                "size_m2": {"type": "number", "description": "Approximate wall area, m²"},
+                "message": {"type": "string", "description": "Free-form project brief"},
+            },
+            "required": ["message"],
+        },
+        "handoff": {
+            "whatsapp": (wa_base + "?text={message}") if wa else None,
+            "email": email_url or None,
+        },
+    }],
+    "links": {
+        "services": [SITE + p["path"]["en"] + "/" for p in svc],
+        "profile": SITE + PROFILE_PATH["en"] + "/",
+        "sitemap": SITE + "sitemap.xml",
+    },
+})
+(out_root / ".well-known").mkdir(exist_ok=True)
+(out_root / ".well-known" / "agent.json").write_text(
+    json.dumps(agent, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 # <lastmod> = date of the last commit that touched the page's OWN content — its block in
 # pages.gen.py plus the images it shows (home: template, i18n, reviews, contact config +
