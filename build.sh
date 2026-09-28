@@ -19,6 +19,7 @@
 #     cluster + OG + preload + JSON-LD by entity + BreadcrumbList) and <html lang>;
 #   * writes robots.txt (open, links sitemap) and sitemap.xml (all URLs + hreflang).
 #   * writes /.well-known/agent.json (agent-json.com discovery doc, no inbox — handoff to WhatsApp/email).
+#   * writes /llms.txt (llmstxt.org Markdown site map for LLMs, EN, from pages.json).
 #
 # Images external + loading="lazy" (fast first paint); each page hero is eager+preload.
 # Reproducible: edit template / i18n.json / pages.json / assets and run `make build`.
@@ -660,11 +661,59 @@ agent = clean({
         "services": [SITE + p["path"]["en"] + "/" for p in svc],
         "profile": SITE + PROFILE_PATH["en"] + "/",
         "sitemap": SITE + "sitemap.xml",
+        "llms": SITE + "llms.txt",
     },
 })
 (out_root / ".well-known").mkdir(exist_ok=True)
 (out_root / ".well-known" / "agent.json").write_text(
     json.dumps(agent, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+# --- /llms.txt (llmstxt.org): Markdown map of the site for LLMs ---------------
+# English (the lingua franca for LLMs) with EN page URLs; titles/descriptions come from
+# pages.json, so new pages appear automatically. Key facts mirror the published copy.
+def llms_link(p):
+    return f"- [{p['h1']['en']}]({SITE}{p['path']['en']}/): {p['desc']['en']}"
+by_kind = lambda k: [p for p in pages if p["kind"] == k and p["id"] != "clases"]
+contacts = " · ".join(x for x in [
+    f"WhatsApp +{wa} ({wa_base})" if wa else "", f"email {email}" if email else ""] if x)
+llms = "\n".join([
+    "# IngArt Studio by Inga Burina",
+    "",
+    "> Bespoke ceramic art by Russian-Spanish artist Inga Burina, based in Benicàssim "
+    "(Castellón, Spain) since 1997: hand-painted ceramic murals and wall panels for homes, "
+    "restaurants and hotels, handmade tableware collections for restaurants, and ceramic "
+    "decoration of spaces — from sketch to installation.",
+    "",
+    "Key facts:",
+    "- Process: sketch → calculations → materials → execution → installation.",
+    "- Pricing: artwork from 200 €/m², materials separate; sketches 150–300 €, then a deposit.",
+    "- Timelines from 1 month to several, depending on size.",
+    "- Ceramics for indoor and outdoor use — a lasting material, with warranty.",
+    "- Area: Benicàssim, Castellón, Comunitat Valenciana.",
+    "- Languages: Spanish (default, " + SITE + "), English (" + home_url("en") + "), "
+    "Russian (" + home_url("ru") + ").",
+    f"- Contact: {contacts}." if contacts else "",
+    "",
+    "## Services",
+    "",
+    *[llms_link(p) for p in by_kind("service")],
+    "",
+    "## Projects",
+    "",
+    *[llms_link(p) for p in by_kind("project")],
+    "",
+    "## About",
+    "",
+    *[llms_link(p) for p in by_kind("profile")],
+    "",
+    "## Optional",
+    "",
+    *[llms_link(p) for p in pages if p["id"] == "clases"],
+    f"- [Sitemap]({SITE}sitemap.xml): all pages in es/en/ru",
+    f"- [Agent discovery]({SITE}.well-known/agent.json): contact action for AI agents",
+    "",
+])
+(out_root / "llms.txt").write_text(llms, encoding="utf-8")
 
 # <lastmod> = date of the last commit that touched the page's OWN content — its block in
 # pages.gen.py plus the images it shows (home: template, i18n, reviews, contact config +

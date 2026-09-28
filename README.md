@@ -63,7 +63,7 @@ it stays local. The repo contains only the public site sources.
 5. **Renders every subpage** from `pages.json` (one renderer per `kind`), wrapping the shell
    around a per-kind `<main>`, and writing its own `<head>`.
 6. Writes `robots.txt`, `sitemap.xml` (home + all subpages, with hreflang; `<lastmod>` = git date of
-   the page's own content, see §6), `/.well-known/agent.json`, `CNAME`, `.nojekyll`, and copies
+   the page's own content, see §6), `/.well-known/agent.json`, `llms.txt`, `CNAME`, `.nojekyll`, and copies
    `static/*` to the site root.
 
 **Server-side i18n**: translatable nodes in the template carry `data-i` (text), `data-i-ph`
@@ -150,6 +150,9 @@ Contact-sheet trick to choose from many source photos:
   (`message_endpoint`/auth omitted); the single action `request_project_quote` carries our own
   `handoff` field (prefilled WhatsApp URL + email). Price anchors in its description are hardcoded —
   update them together with the site copy.
+- `/llms.txt` ([llmstxt.org](https://llmstxt.org/)): Markdown map of the site for LLMs, generated in
+  build.sh — summary + "Key facts" (hardcoded, mirror the published copy: prices, process, warranty)
+  + links to EN pages grouped by `kind` from `pages.json` (new pages appear automatically).
 
 ---
 
